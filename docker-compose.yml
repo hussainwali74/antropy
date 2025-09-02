@@ -1,0 +1,25 @@
+services:
+  db:
+    image: neo4j:latest
+    container_name: neo4j_db
+    restart: unless-stopped
+    environment:
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
+      # - NEO4J_dbms_connector_bolt_advertised__address=db:7687
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - ./neo4j_data:/data
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - NEOMODEL_NEO4J_BOLT_URL=bolt://neo4j:${NEO4J_PASSWORD}@db:7687
+    volumes:
+      - ./backend:/app
