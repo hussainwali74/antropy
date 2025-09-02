@@ -12,6 +12,7 @@ from .serializers import (
 from neomodel import DoesNotExist
 
 from .permissions import IsAdmin, IsSupplier, IsSupplierOfGrocery
+from datetime import datetime
 
 
 # Base viewset for neomodel nodes
@@ -66,6 +67,13 @@ class GroceryViewSet(NeomodelBaseViewSet):
         return Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
+
+    def perform_update(self, serializer):
+        instance = self.get_object()
+        for attr, value in serializer.validated_data.items():
+            setattr(instance, attr, value)
+        instance.updated_at = datetime.now()
+        instance.save()
 
 
 class ItemViewSet(NeomodelBaseViewSet):
