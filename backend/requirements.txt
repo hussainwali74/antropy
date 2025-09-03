@@ -6,3 +6,5 @@ neo4j==5.28.2
 neomodel==5.5.0
 python-dotenv==1.1.1
 bcrypt==4.3.0
+
+drf-spectacular

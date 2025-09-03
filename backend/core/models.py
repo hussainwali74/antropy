@@ -35,7 +35,7 @@ class Grocery(StructuredNode):
 
 class Item(StructuredNode):
     name = StringProperty()
-    item_type = StringProperty()  # `item_type` is a Python keyword.
+    item_type = StringProperty()  # `type` is a Python keyword.
     location = StringProperty()
     soft_deleted = BooleanProperty(default=False)
     created_at = DateTimeProperty(default_now=True)

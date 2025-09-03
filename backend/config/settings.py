@@ -36,7 +36,8 @@ ALLOWED_HOSTS = []
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
+    ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 # Application definition
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "core",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -140,3 +142,11 @@ if NEOMODEL_NEO4J_BOLT_URL:
     config.DATABASE_URL = NEOMODEL_NEO4J_BOLT_URL
 else:
     print("Warning: NEOMODEL_NEO4J_BOLT_URL is not set.")
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Grocery store",
+    "DESCRIPTION": "Your project description",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}

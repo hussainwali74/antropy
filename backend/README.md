@@ -1,8 +1,19 @@
+# BE
+
 setup django
 uv run django-admin startproject config .
 uv run python manage.py startapp core
 
----
+- Implemented the logic for
+  creating,
+  retrieving,
+  updating,
+  and deleting objects,
+- ensur neomodel's update at and soft-delete features are correctly used.
+
+## API Documenation
+
+    `http://localhost:8000/api/schema/swagger-ui/`
 
 # Neo4j with Docker Compose
 
